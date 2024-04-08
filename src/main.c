@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 17:09:09 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/08 11:13:22 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:22:47 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 
 int	keyPress(int key, t_game *game)
 {
+	// mlx_pixel_put(game->mlx, game->mlx->mlx_win,
+	// 	game->pl->dY + game->pl->oY, game->pl->dX + game->pl->oX, 0);
 	if (key == 53)
 		my_exit(game->mlx);
 	else if (key == 13)
 		moveUp(game, game->mlx);
-	else if (key == 0)
-		moveLeft(game, game->mlx);
-	else if (key == 1)
-		moveDown(game, game->mlx);
-	else if (key == 2)
-		moveRight(game, game->mlx);
+	// else if (key == 0)
+	// 	moveLeft(game, game->mlx);
+	// else if (key == 1)
+	// 	moveDown(game, game->mlx);
+	// else if (key == 2)
+	// 	moveRight(game, game->mlx);
 	else if (key == 123)
-		;
+		rotateLeft(game);
 	else if (key == 124)
-		;
+		rotateRight(game);
+	// game->pl->dX = cos(game->pl->pA) * 15;
+	// game->pl->dY = sin(game->pl->pA) * 15;
+	// mlx_pixel_put(game->mlx, game->mlx->mlx_win,
+	// 	game->pl->dY + game->pl->oY, game->pl->dX + game->pl->oX, 65280);
 	return (0);
 }
 

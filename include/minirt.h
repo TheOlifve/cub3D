@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:20:10 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/08 11:18:00 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:03:04 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ typedef struct s_mlx
 
 typedef struct s_player
 {
-	int		oX;
-	int		oY;
-	int		lX;
-	int		lY;
+	float	oX;
+	float	oY;
+	float	lX;
+	float	lY;
 	float	dX;
 	float	dY;
 	float	pA;
@@ -102,5 +102,9 @@ void	moveDown(t_game *game, t_mlx *mlx);
 void	moveLeft(t_game *game, t_mlx *mlx);
 void	moveMouse(t_game *game, t_mlx *mlx);
 void	moveRight(t_game *game, t_mlx *mlx);
+
+//	Rotate
+void	rotateLeft(t_game *game);
+void	rotateRight(t_game *game);
 
 #endif

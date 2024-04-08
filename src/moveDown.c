@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:27:18 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/07 21:27:55 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:22:11 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	moveDown(t_game *game, t_mlx *mlx)
 		game->pl->lX += playerStep;
 	else
 		return ;
+	game->pl->oX += playerStep;
 	i = 0;
 	while (i < playerSize)
 	{

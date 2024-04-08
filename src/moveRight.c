@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:29:31 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/08 10:48:16 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:22:43 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	moveRight(t_game *game, t_mlx *mlx)
 		game->pl->lY += playerStep;
 	else
 		return ;
+	game->pl->oY += playerStep;
 	i = 0;
 	while (i < playerSize)
 	{

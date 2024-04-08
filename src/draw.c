@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:23:50 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/08 11:22:27 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:36:29 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,18 @@ void	playerIn(t_game *game, int x, int y)
 	else if(game->map[x][y] == 'S')
 		game->pl->pA = 0;
 	else if(game->map[x][y] == 'W')
-		game->pl->pA = PI;
+		game->pl->pA = 3 * (PI / 2);
 	else
-		game->pl->dY = 0;
-	game->pl->dX = cos(game->pl->pA);
-	game->pl->dY = sin(game->pl->pA);
+		game->pl->pA = PI / 2;
 	game->pl->oX = (x * pxlSize) + (playerSize / 2);
 	game->pl->oY = (y * pxlSize) + (playerSize / 2);
+	game->pl->dX = cos(game->pl->pA) * 15;
+	game->pl->dY = sin(game->pl->pA) * 15;
+	printf("%f\n",game->pl->pA);
 	game->pl->lX = x * pxlSize;
 	game->pl->lY = y * pxlSize;
+	mlx_pixel_put(game->mlx, game->mlx->mlx_win,
+		game->pl->dY + game->pl->oY, game->pl->dX + game->pl->oX, 65280);
 }
 
 void	drawMap(t_mlx *mlx, t_game	*game)
