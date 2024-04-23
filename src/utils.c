@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 18:06:05 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/05 14:38:28 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/11 00:07:55 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,15 @@ int	rgbtoi(char	*color)
 	b = ft_atoi(spl[2]);
 	doublefree(spl);
 	return (r + g + b);
+}
+
+void	mapSize(t_game *game)
+{
+	game->mapH = 0;
+	game->mapW = 0;
+	if (game->map && game->map[0])
+		while (game->map[0][game->mapW])
+			game->mapW++;
+	while (game->map && game->map[game->mapH])
+		game->mapH++;
 }

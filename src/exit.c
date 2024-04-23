@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:30:06 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/07 13:15:31 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:13:37 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	err_exit(int num)
 
 int	my_exit(t_mlx *mlx)
 {
-	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	mlx_destroy_window(mlx->pMlx, mlx->win);
 	exit(0);
 }

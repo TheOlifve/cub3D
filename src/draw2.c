@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_textures2.c                                  :+:      :+:    :+:   */
+/*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 16:06:53 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/08 18:42:pxlSize by hrahovha         ###   ########.fr       */
+/*   Created: 2024/04/21 00:59:11 by hrahovha          #+#    #+#             */
+/*   Updated: 2024/04/22 19:14:07 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	valid_texture(char *tex_path)
+void	drawWall(t_game *game, int r, int h)
 {
-	int	fd;
-
-	if (valid_file_type(tex_path, ".xpm"))
-		return (1);
-	fd = open(tex_path, O_RDONLY);
-	if (fd < 0)
-		return (1);
-	return (0);
+	int	x;
+	int	y;
+	
+	y = 0;
+	while (y < h)
+	{
+		x = 0;
+		while (x < 16)
+		{
+			drawPixel(game, r * 16 + x, y + 400 - h/2 , game->wall_clr);
+			x++;
+		}
+		y++;
+	}
 }

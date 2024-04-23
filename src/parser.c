@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:49:41 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/07 12:46:21 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/11 00:06:41 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	parser(t_mlx *mlx, t_game *game, char *file)
 	if (game->tmp)
 	{
 		mapSeparate(game);
+		mapSize(game);
 		paramSeparate(game);
 	}
 	if (validElem(game))

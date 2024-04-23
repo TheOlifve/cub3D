@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 10:59:44 by rugrigor          #+#    #+#             */
-/*   Updated: 2024/01/22 16:05:01 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/08 20:46:14 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,35 @@
 char	*strn(char *ptr)
 {
 	int		i;
-	char	*p;
+	char	*pa;
 
 	i = 0;
 	while (ptr && ptr[i] && ptr[i] != '\n')
 		i++;
-	p = ft_substr(ptr, 0, i + 1);
-	return (p);
+	pa = ft_substr(ptr, 0, i + 1);
+	return (pa);
 }
 
 char	*strn2(char *ptr)
 {
 	int		i;
-	char	*p;
+	char	*pa;
 
 	i = 0;
 	while (ptr && ptr[i] && ptr[i] != '\n')
 		i++;
-	p = ft_substr(ptr, i + 1, ft_strlen(ptr) - i + 1);
+	pa = ft_substr(ptr, i + 1, ft_strlen(ptr) - i + 1);
 	free(ptr);
-	ptr = ft_strdup(p);
-	free(p);
-	p = (NULL);
+	ptr = ft_strdup(pa);
+	free(pa);
+	pa = (NULL);
 	return (ptr);
 }
 
 static char	*go_go(char *buff, int fd, char *str)
 {
 	int		i;
-	char	*p;
+	char	*pa;
 
 	if (ft_strchr(str, '\n'))
 		return (str);
@@ -53,11 +53,11 @@ static char	*go_go(char *buff, int fd, char *str)
 		buff[i] = '\0';
 		if (!str)
 			str = ft_strdup("");
-		p = ft_strdup(str);
+		pa = ft_strdup(str);
 		free(str);
-		str = ft_strjoin(p, buff);
-		free(p);
-		p = (NULL);
+		str = ft_strjoin(pa, buff);
+		free(pa);
+		pa = (NULL);
 		if (ft_strchr(str, '\n'))
 			break ;
 		i = read(fd, buff, BUFFER_SIZE);
