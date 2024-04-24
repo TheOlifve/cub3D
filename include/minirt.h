@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:20:10 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/24 22:10:37 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:49:04 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define pxlSize 16
 # define playerSize 4
-# define playerSpeed 3
+# define playerSpeed 4
 # define mouseSens 20
 # define DR 0.0174533
 # define PI 3.141592654

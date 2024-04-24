@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 11:43:33 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/24 14:23:43 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:32:57 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,28 @@ int	checkWall(t_game *game)
 	if (game->map[y][x] == '1' || game->map[y][x] == 'D')
 		return (0);
 	return (1);
+}
+
+int	moveMouse(t_game *game)
+{
+		int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	mlx_mouse_get_pos(MLX->win, &x, &y);
+	mlx_mouse_hide();
+	if (x >= (MLX->winW / 2) + mouseSens)
+	{
+		mlx_mouse_move(MLX->win, MLX->winW / 2, MLX->winH / 2);
+		rotateRight(game);
+		drawScene(game, 0);
+	}
+	else if (x <= (MLX->winW / 2) - mouseSens)
+	{
+		mlx_mouse_move(MLX->win, MLX->winW / 2, MLX->winH / 2);
+		rotateLeft(game);
+		drawScene(game, 0);
+	}
+	return (0);
 }

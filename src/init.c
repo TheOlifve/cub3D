@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 01:00:19 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/24 21:52:43 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:32:40 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,31 +95,7 @@ void	rayInit(t_game *game)
 	RAY->dist = 1000;
 }
 
-int	moveMouse(t_game *game)
-{
-		int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	mlx_mouse_get_pos(MLX->win, &x, &y);
-	mlx_mouse_hide();
-	if (x >= (MLX->winW / 2) + mouseSens)
-	{
-		mlx_mouse_move(MLX->win, MLX->winW / 2, MLX->winH / 2);
-		rotateRight(game);
-		drawScene(game, 0);
-	}
-	else if (x <= (MLX->winW / 2) - mouseSens)
-	{
-		mlx_mouse_move(MLX->win, MLX->winW / 2, MLX->winH / 2);
-		rotateLeft(game);
-		drawScene(game, 0);
-	}
-	return (0);
-}
-
-void	  initGame(t_game *game)
+void	initGame(t_game *game)
 {
 	MLX = malloc(sizeof(t_mlx));
 	IMG = malloc(sizeof(t_img));
