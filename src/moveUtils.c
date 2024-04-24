@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 11:43:33 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/14 16:25:28 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:23:43 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@ int	checkWall(t_game *game)
 	
 	x = p->x1 / pxlSize;
 	y = p->y1 / pxlSize;
-	if (game->map[y][x] == '1')
+	if (game->map[y][x] == '1' || game->map[y][x] == 'D')
 		return (0);
 	x = p->x2 / pxlSize;
 	y = p->y2 / pxlSize;
-	if (game->map[y][x] == '1')
+	if (game->map[y][x] == '1' || game->map[y][x] == 'D')
 		return (0);
 	x = p->x3 / pxlSize;
 	y = p->y3 / pxlSize;
-	if (game->map[y][x] == '1')
+	if (game->map[y][x] == '1' || game->map[y][x] == 'D')
 		return (0);
 	x = p->x4 / pxlSize;
 	y = p->y4 / pxlSize;
-	if (game->map[y][x] == '1')
+	if (game->map[y][x] == '1' || game->map[y][x] == 'D')
 		return (0);
 	return (1);
 }

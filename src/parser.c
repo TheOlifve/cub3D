@@ -6,14 +6,14 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:49:41 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/11 00:06:41 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:42:44 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 
-int	mon(char *str)
+int	mon(char *str)//map or not
 {
 	char **tmp;
 
@@ -98,9 +98,8 @@ void	mapSeparate(t_game *game)
 	free(tmp3);
 }
 
-int	parser(t_mlx *mlx, t_game *game, char *file)
+int	parser(t_game *game, char *file)
 {
-	(void)mlx;
 	if (valid_file_type(file, ".cub"))
 		return err_print(2);
 	game->tmp = read_file(-1, file);
@@ -112,22 +111,5 @@ int	parser(t_mlx *mlx, t_game *game, char *file)
 	}
 	if (validElem(game))
 		return (err_print(6));
-	// if (textures_init(mlx, game))
-	// 	return (1);
 	return (0);
 }
-	// int		i;
-
-	// i = 0;
-	// while (game->map && game->map[i])
-	// {
-	// 	printf("%s\n", game->map[i]);
-	// 	i++;
-	// }
-	// printf("\n\n\n\n\n\n");
-	// i = 0;
-	// while (game->params && game->params[i])
-	// {
-	// 	printf("%s\n", game->params[i]);
-	// 	i++;
-	// }

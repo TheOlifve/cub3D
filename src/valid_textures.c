@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:49:41 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/13 11:42:38 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:40:07 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	no_texture(t_mlx *mlx, t_game *game)
 		write(2, "\nRight form: NO ./path_to_the_north_texture\n", 45);
 		return (1);
 	}
-	game->NO = mlx_xpm_file_to_image(mlx->pMlx, tmp[1], &i, &j);
+	game->imgNO = mlx_xpm_file_to_image(mlx->pMlx, tmp[1], &i, &j);
 	doublefree(tmp);
 	return (0);
 }
@@ -47,7 +47,7 @@ int	so_texture(t_mlx *mlx, t_game *game)
 		write(2, "\nRight form: SO ./path_to_the_south_texture\n", 45);
 		return (1);
 	}
-	game->SO = mlx_xpm_file_to_image(mlx->pMlx, tmp[1], &i, &j);
+	game->imgSO = mlx_xpm_file_to_image(mlx->pMlx, tmp[1], &i, &j);
 	doublefree(tmp);
 	return (0);
 }
@@ -67,7 +67,7 @@ int	we_texture(t_mlx *mlx, t_game *game)
 		doublefree(tmp);
 		return (1);
 	}
-	game->WE = mlx_xpm_file_to_image(mlx->pMlx, tmp[1], &i, &j);
+	game->imgWE = mlx_xpm_file_to_image(mlx->pMlx, tmp[1], &i, &j);
 	doublefree(tmp);
 	return (0);
 }
@@ -87,7 +87,7 @@ int	ea_texture(t_mlx *mlx, t_game *game)
 		doublefree(tmp);
 		return (1);
 	}
-	game->EA = mlx_xpm_file_to_image(mlx->pMlx, tmp[1], &i, &j);
+	game->imgEA = mlx_xpm_file_to_image(mlx->pMlx, tmp[1], &i, &j);
 	doublefree(tmp);
 	return (0);
 }

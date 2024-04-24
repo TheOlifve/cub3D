@@ -6,7 +6,7 @@
 /*   By: hrahovha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:20:10 by hrahovha          #+#    #+#             */
-/*   Updated: 2024/04/22 23:59:31 by hrahovha         ###   ########.fr       */
+/*   Updated: 2024/04/24 22:10:37 by hrahovha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@
 
 # define pxlSize 16
 # define playerSize 4
-# define playerStep 4
+# define playerSpeed 3
+# define mouseSens 20
+# define DR 0.0174533
 # define PI 3.141592654
 # define PI2 PI / 2
 # define PI3 3 * (PI / 2)
 # define floorCLR 0
 # define ceilingCLR 16777215
-# define p game->pl // player
+# define p game->player // player
 # define IMG game->mlx->img // img3d
 # define MLX game->mlx // mlx
 # define RAY game->ray // ray
@@ -43,15 +45,17 @@
 
 typedef struct s_ray
 {
-	float	x;
-	float	y;
-	float	a1;
-	float	a2;
-	float	b1;
-	float	b2;
+	float	hX;//X of ray intersection with horizontal walls
+	float	hY;//Y of ray intersection with horizontal walls
+	float	vX;//X of ray intersection with vertical walls
+	float	vY;//Y of ray intersection with vertical walls
+	float	hdX;//X of ray intersection with horizontal doors
+	float	hdY;
+	float	vdX;//X of ray intersection with vertical doors
+	float	vdY;
 	float	c1;
 	float	c2;
-	float	dist;
+	float	dist;//Distance between player and wall (Ray lenght)
 }		t_ray;
 
 
@@ -69,20 +73,16 @@ typedef struct s_img
 
 typedef struct s_mlx
 {
-	int		x;
-	int		y;
-	int		h;
-	int		w;
+	int		winH;
+	int		winW;
 	void	*pMlx;
-	void	*pMlx2;
 	void	*win;
-	void	*win2;
 	t_img	*img;
 }			t_mlx;
 
 typedef struct s_player
 {
-	float	oX;
+	float	oX;// Center
 	float	oY;
 	float	x1;
 	float	y1;
@@ -95,36 +95,36 @@ typedef struct s_player
 	float	dX;
 	float	dY;
 	float	pA;
-	float	hX;
-	float	hY;
-	float	vX;
-	float	vY;
 }			t_player;
 
 typedef struct s_game
 {
-	int			wall_clr;
-	int			floor_clr;
-	int			ceiling_clr;
+	int			wallClr;
+	int			floorClr;
+	int			hWallClr;
+	int			vWallClr;
+	int			ceilingClr;
 	int			mapH;
 	int			mapW;
 	char		**tmp;
 	char		**map;
 	char		**params;
-	void		*NO;
-	void		*SO;
-	void		*WE;
-	void		*EA;
+	void		*imgNO;
+	void		*imgSO;
+	void		*imgWE;
+	void		*imgEA;
 	t_mlx		*mlx;
 	t_ray		*ray;
-	t_player	*pl;
+	t_player	*player;
 }			t_game;
 
 //	PARSER
-int		parser(t_mlx *mlx, t_game *game, char *file);
+int		parser(t_game *game, char *file);
 int		valid_file_type(char *s1, char *s2);
 void	mapSize(t_game *game);
-void	playerInit(t_game *game);
+
+//	INIT
+void	initGame(t_game *game);
 
 //	UTILS
 int		rgbtoi(char	*color);
@@ -137,34 +137,46 @@ void	doublefree(char **str);
 float	my_atof(char *str);
 
 //	TEXTURES
-int	textures_init(t_mlx *mlx, t_game *game);
 int	valid_texture(char *tex_path);
 int	ea_texture(t_mlx *mlx, t_game *game);
 int	so_texture(t_mlx *mlx, t_game *game);
 int	we_texture(t_mlx *mlx, t_game *game);
 int	ea_texture(t_mlx *mlx, t_game *game);
+int	textures_init(t_mlx *mlx, t_game *game);
 
-//	Draw
+//	DRAW
+void	drawDoor(t_game *game, float rayA);
+void	resetCoords(t_game *game);
 void	drawMiniMap(t_game	*game);
+void	drawWall(t_game *game, int pos);
 void	drawCeilingAndFloor(t_game *game);
+void	drawScene(t_game *game, float rayA);
 void	drawPlayer(t_game *game, int color);
-void	drawWall(t_game *game, int r, int h);
 void	drawBlock(t_game *game, int x, int y, int clr);
 void	drawPixel(t_game *game, int x, int y, int color);
 
-//	Move
+//	MOVE
 int		checkWall(t_game *game);
-void	moveLeft(t_game *game);
-void	moveRight(t_game *game);
-void	moveForward(t_game *game);
-void	moveBackward(t_game *game);
+int		moveMouse(t_game *game);
+int		keyPress(int key, t_game *game);
+void	openDoor(t_game *game);
 void	moveCoords(t_game *game);
 void	moveCoordsBack(t_game *game);
-void	moveMouse(t_game *game, t_mlx *mlx);
 
 
-//	Rotate
+//	ROTATE
 void	rotateLeft(t_game *game);
 void	rotateRight(t_game *game);
+
+//	INTERSECTION
+int		eastWall(t_game *game, float rX, float rY);
+int		westWall(t_game *game, float rX, float rY);
+int		northWall(t_game *game, float rX, float rY);
+int		southWall(t_game *game, float rX, float rY);
+void	shorterRay(t_game *game, float rayA);
+void	eastIntersec(t_game *game, float rX, float rY, float rA);
+void	westIntersec(t_game *game, float rX, float rY, float rA);
+void	southIntersec(t_game *game, float rX, float rY, float rA);
+void	northIntersec(t_game *game, float rX, float rY, float rA);
 
 #endif

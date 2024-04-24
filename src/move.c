@@ -14,8 +14,8 @@
 
 void	moveForward(t_game *game)
 {
-	p->dX = cos(p->pA) * playerStep;
-	p->dY = sin(p->pA) * playerStep;
+	p->dX = cos(p->pA) * playerSpeed;
+	p->dY = sin(p->pA) * playerSpeed;
 	moveCoords(game);
 	if (checkWall(game))
 		;
@@ -25,8 +25,8 @@ void	moveForward(t_game *game)
 
 void	moveBackward(t_game *game)
 {
-	p->dX = cos(p->pA) * playerStep;
-	p->dY = sin(p->pA) * playerStep;
+	p->dX = cos(p->pA) * playerSpeed;
+	p->dY = sin(p->pA) * playerSpeed;
 	moveCoordsBack(game);
 	if (checkWall(game))
 		;
@@ -36,8 +36,8 @@ void	moveBackward(t_game *game)
 
 void	moveLeft(t_game *game)
 {
-	p->dX = cos(p->pA - PI2) * playerStep;
-	p->dY = sin(p->pA - PI2) * playerStep;
+	p->dX = cos(p->pA - PI2) * playerSpeed;
+	p->dY = sin(p->pA - PI2) * playerSpeed;
 	moveCoords(game);
 	if (checkWall(game))
 		;
@@ -47,11 +47,29 @@ void	moveLeft(t_game *game)
 
 void	moveRight(t_game *game)
 {
-	p->dX = cos(p->pA + PI2) * playerStep;
-	p->dY = sin(p->pA + PI2) * playerStep;
+	p->dX = cos(p->pA + PI2) * playerSpeed;
+	p->dY = sin(p->pA + PI2) * playerSpeed;
 	moveCoords(game);
 	if (checkWall(game))
 		;
 	else
 		return moveCoordsBack(game);
+}
+
+int	keyPress(int key, t_game *game)
+{
+	if (key == 53)
+		my_exit(game->mlx);
+	else if (key == 13)
+		moveForward(game);
+	else if (key == 0)
+		moveLeft(game);
+	else if (key == 1)
+		moveBackward(game);
+	else if (key == 2)
+		moveRight(game);
+	else if (key == 14)
+		openDoor(game);
+	drawScene(game, 0);
+	return (0);
 }
